@@ -7,51 +7,57 @@ const path = require('path');
 
 console.log(path.join(__dirname, 'public')); //path to current location
 
-// for exposing the object 
-// entry point -> output
-module.exports = {
-  // specify webpack config details
 
-  // entry file
-  entry: './src/app.js',
-//  entry: './src/playground/redux-expensify.js',  
+// export a function, when called, will return the object
+module.exports = (env ) => {
+  const isProduction = env === 'production';
+  console.log('env', env);
 
-  // output file
-  output: {
-    path: path.join(__dirname, 'public'), //need to use absolute path on your machine
-    filename: 'bundle.js'
-  },
+  return {
+    // specify webpack config details
 
-  // setup loader
-  module: {
-    // rules take an array of loaders
-    rules: [
-    // JS loader  
-    {
-      loader: 'babel-loader',
-      test: /\.js$/,
-      exclude: /node_modules/
-    }, 
-    // CSS loader
-    {
-      // support both css and scss
-      test: /\.s?css$/,   
-      // 'use' allow providing more than 1 loader
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader'
-      ]
-    }]
-  },
+    // entry file
+    entry: './src/app.js',
+  //  entry: './src/playground/redux-expensify.js',  
 
-  // source maps
-  devtool: 'cheap-module-eval-source-map',
+    // output file
+    output: {
+      path: path.join(__dirname, 'public'), //need to use absolute path on your machine
+      filename: 'bundle.js'
+    },
 
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    // setup loader
+    module: {
+      // rules take an array of loaders
+      rules: [
+      // JS loader  
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }, 
+      // CSS loader
+      {
+        // support both css and scss
+        test: /\.s?css$/,   
+        // 'use' allow providing more than 1 loader
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }]
+    },
 
-    //handling routing via client side code.  return index.html for all 404 routes
-    historyApiFallback: true    
+    // source maps
+    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+
+    devServer: {
+      contentBase: path.join(__dirname, 'public'),
+
+      //handling routing via client side code.  return index.html for all 404 routes
+      historyApiFallback: true    
+    }
   }
 };
+

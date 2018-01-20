@@ -12,6 +12,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
 // should keep app.js small, only in charge of bootstrapping thing
+console.log('test!');
 
 // setup store
 const store = configureStore();
