@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
+const port = process.env.PORT || 3000; // process.env.PORT is variable set by heroku
 
 // use public folder to server static assets
 app.use(express.static(publicPath));
@@ -12,6 +13,6 @@ app.get('*', (req, res) => {
 });
 
 // start the server at port 3000
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('server is up!');
 });
