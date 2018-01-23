@@ -25,7 +25,7 @@ module.exports = (env ) => {
 
     // output file
     output: {
-      path: path.join(__dirname, 'public'), //need to use absolute path on your machine
+      path: path.join(__dirname, 'public', 'dist'), //need to use absolute path on your machine  (/public/dist)
       filename: 'bundle.js'
     },
 
@@ -76,7 +76,8 @@ module.exports = (env ) => {
       contentBase: path.join(__dirname, 'public'),
 
       //handling routing via client side code.  return index.html for all 404 routes
-      historyApiFallback: true    
+      historyApiFallback: true,
+      publicPath: '/dist/'  // serve bundles.js from /pubic/dist
     }
   }
 };
