@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { shallow } from 'enzyme';
-import { ExpenseListFitlers, ExpenseListFilters } from '../../components/ExpenseListFilters';
+import { ExpenseListFilters } from '../../components/ExpenseListFilters';
 
 import { filters, altFilters } from '../fixtures/filters';
 
